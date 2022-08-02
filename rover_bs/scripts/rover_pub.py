@@ -23,9 +23,14 @@ class Controller():
         self.m = 109
         self.v = 118
         self.b = 98
-        self.directions = [self.up, self.down, self.left, self.right, self.r, self.f, self.t, self.g, self.y, self.h, self.o, self.p, self.n, self.m, self.v, self.b]
-        self.dir_states = [False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False]
-        self.outputs = ["up", "down", "left", "right", "r", "f", "t", "g", "y", "h", "o", "p", "n", "m", "v", "b"]
+        self.one = 49
+        self.two = 50
+        self.three = 51
+        self.four = 52
+        self.hyphen = 45
+        self.directions = [self.up, self.down, self.left, self.right, self.r, self.f, self.t, self.g, self.y, self.h, self.o, self.p, self.n, self.m, self.v, self.b, self.one, self.two, self.three, self.four, self.hyphen]
+        self.dir_states = [False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False]
+        self.outputs = ["up", "down", "left", "right", "r", "f", "t", "g", "y", "h", "o", "p", "n", "m", "v", "b", "1", "2", "3", "4", "-"]
         self.keys_pressed = rospy.Publisher("rover_keys", String, queue_size=10)
         pygame.init()
         rospy.init_node('rover_pub', anonymous=True)
@@ -52,7 +57,7 @@ class Controller():
                     self.keys_pressed.publish(self.outputs[self.dir_states.index(dir)])
                 else:
                     pass
-            sleep(0.1)
+            sleep(0.01)
             
 controls = Controller()
 if __name__ == "__main__":
